@@ -1,0 +1,18 @@
+.popup__name {
+  font-family: inherit;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  padding: 13px 0;
+  margin: 41px 0 0;
+  border: none;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 450px) {
+  .popup__name {
+    margin: 75px 0 13px;
+  }
+}

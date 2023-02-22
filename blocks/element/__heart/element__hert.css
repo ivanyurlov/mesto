@@ -1,11 +1,11 @@
 .element__heart {
-  background-image: url(../../../image-Sprint4/Heart.svg);
+  background-image: url(../../../images/Heart.svg);
   background-repeat: no-repeat;
   border: none;
   background-color: #FFFFFF;
   width: 22px;
   height: 19px;
-  padding-right: 5px;
+  flex-shrink: 0;
   transition: opacity 0.3s linear;
 }
 

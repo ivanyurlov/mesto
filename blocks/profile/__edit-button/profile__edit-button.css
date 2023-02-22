@@ -1,6 +1,12 @@
 .profile__edit-button {
-  background: none;
-  border: none;
+  background-image: url(../../../images/Pen.svg);
+  background-repeat: no-repeat;
+  background-position: center;
+  width: 24px;
+  height: 24px;
+  padding: 7px;
+  border: 1px solid #FFFFFF;
+  background-color: #000000;
   display: flex;
   align-items: flex-start;
   cursor: pointer;

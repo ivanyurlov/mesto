@@ -7,10 +7,9 @@ const jobInput = document.querySelector('#user-profession');
 const nameProfile = document.querySelector('.profile__user-name');
 const activityProfile = document.querySelector('.profile__activity');
 
-nameInput.value = nameProfile.textContent;
-jobInput.value = activityProfile.textContent;
-
 function openPopup (popup) {
+  nameInput.value = nameProfile.textContent;
+  jobInput.value = activityProfile.textContent;
   popup.classList.add('popup_opened');
 };
 
@@ -26,16 +25,6 @@ function handleFormSubmit (evt) {
   closePopup (popup);
 };
 
-nameInput.addEventListener('submit', function(evt) {
-  const value = evt.target.value;
-  nameProfile.textContent = value;
-});
-
-jobInput.addEventListener('submit',  function(evt) {
-  const value = evt.target.value;
-  activityProfile.textContent = value; 
-});
-
 editProfileButton.addEventListener('click', function() {
   openPopup (popup);
 
@@ -43,7 +32,6 @@ editProfileButton.addEventListener('click', function() {
 
 popupCloseButton.addEventListener('click', function () {
   closePopup (popup);
-  formElement.reset();
 });
 
 formElement.addEventListener('submit', handleFormSubmit);

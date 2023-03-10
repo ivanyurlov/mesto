@@ -6,6 +6,7 @@ const nameInput = document.querySelector('#user-name');
 const jobInput = document.querySelector('#user-profession'); 
 const nameProfile = document.querySelector('.profile__user-name');
 const activityProfile = document.querySelector('.profile__activity');
+const popups = document.querySelectorAll('.popup');
 
 const cardTemplate = document.querySelector('#elementTemplate').content
 const cardAddButton = document.querySelector('.profile__add-button');
@@ -29,11 +30,11 @@ function creatCard(card) {
   const cardImage = newCard.querySelector('.element__photo');
   cardImage.setAttribute('src', card.link);
   cardImage.setAttribute('alt', 'Фото - ' + card.name);
-  const ButtonForDelete = newCard.querySelector('.element__basket');
-  ButtonForDelete.addEventListener('click', deleteCard);
+  const buttonForDelete = newCard.querySelector('.element__basket');
+  buttonForDelete.addEventListener('click', deleteCard);
 
-  const ButtonForLikeCard = newCard.querySelector('.element__heart');
-  ButtonForLikeCard.addEventListener('click', handleLikeCard);
+  const buttonForLikeCard = newCard.querySelector('.element__heart');
+  buttonForLikeCard.addEventListener('click', handleLikeCard);
   
   const photoLargeButton = newCard.querySelector('.element__large');
   photoLargeButton.addEventListener("click", () => handleLargePhoto(card));
@@ -41,7 +42,7 @@ function creatCard(card) {
     popupCaption.textContent = card.name;
     popupPhoto.setAttribute('src', card.link);
     popupPhoto.setAttribute('alt', 'Фото - ' + card.name);
-    openPopupLarge (popupLarge);
+    openPopup (2);
   };
 
   return newCard;
@@ -58,28 +59,12 @@ function deleteCard(event) {
   card.remove();
 };
 
-function openPopupUser (popupUser) {
-  popupUser.classList.add('popup_opened');
+function openPopup (index) {
+  popups[index].classList.add('popup_opened');
 };
 
-function openPopupCard (popupCard) {
-  popupCard.classList.add('popup_opened');
-};
-
-function openPopupLarge (popupLarge) {
-  popupLarge.classList.add('popup_opened');
-};
-
-function closePopupUser (popupUser) {
-  popupUser.classList.remove('popup_opened');
-};
-
-function closePopupCard (popupCard) {
-  popupCard.classList.remove('popup_opened');
-};
-
-function closePopupLarge (popupLarge) {
-  popupLarge.classList.remove('popup_opened');
+function closePopup (index) {
+  popups[index].classList.remove('popup_opened');
 };
 
 function getProfileToUser () {
@@ -92,7 +77,7 @@ function handleFormSubmitUser (event) {
  
   nameProfile.textContent = nameInput.value;
   activityProfile.textContent = jobInput.value;
-  closePopupUser (popupUser);
+  closePopup (0);
 };
 
 function handleFormSubmitCard (event) {
@@ -106,33 +91,33 @@ function handleFormSubmitCard (event) {
     link: link
   };
   renderCard (card);
-  closePopupCard (popupCard);
+  closePopup (1);
 };
 
 function handleLikeCard (event) {
-  const ButtonForLikeCard = event.target;
-  ButtonForLikeCard.classList.toggle('element__heart_active');
+  const buttonForLikeCard = event.target;
+  buttonForLikeCard.classList.toggle('element__heart_active');
 };
 
 profileEditButton.addEventListener('click', function() {
-  openPopupUser (popupUser);
+  openPopup (0);
   getProfileToUser ();
 });
 
 cardAddButton.addEventListener('click', function() {
-  openPopupCard (popupCard);
+  openPopup (1);
 });
 
 popupCloseButtonUser.addEventListener('click', function () {
-  closePopupUser (popupUser);
+  closePopup (0);
 });
 
 popupCloseButtonCard.addEventListener('click', function () {
-  closePopupCard (popupCard);
+  closePopup (1);
 });
 
 popupCloseButtonLarge.addEventListener('click', function () {
-  closePopupLarge (popupLarge);
+  closePopup (2);
 });
 
 formPopupUser.addEventListener('submit', handleFormSubmitUser);

@@ -42,7 +42,7 @@ function creatCard(card) {
     popupCaption.textContent = card.name;
     popupPhoto.setAttribute('src', card.link);
     popupPhoto.setAttribute('alt', 'Фото - ' + card.name);
-    openPopup (2);
+    togglePopup (popupLarge);
   };
 
   return newCard;
@@ -59,12 +59,8 @@ function deleteCard(event) {
   card.remove();
 };
 
-function openPopup (index) {
-  popups[index].classList.add('popup_opened');
-};
-
-function closePopup (index) {
-  popups[index].classList.remove('popup_opened');
+function togglePopup (popups) {
+  popups.classList.toggle('popup_opened');
 };
 
 function getProfileToUser () {
@@ -77,7 +73,7 @@ function handleFormSubmitUser (event) {
  
   nameProfile.textContent = nameInput.value;
   activityProfile.textContent = jobInput.value;
-  closePopup (0);
+  togglePopup (popupUser);
 };
 
 function handleFormSubmitCard (event) {
@@ -91,7 +87,7 @@ function handleFormSubmitCard (event) {
     link: link
   };
   renderCard (card);
-  closePopup (1);
+  togglePopup (popupCard);
 };
 
 function handleLikeCard (event) {
@@ -100,24 +96,24 @@ function handleLikeCard (event) {
 };
 
 profileEditButton.addEventListener('click', function() {
-  openPopup (0);
+  togglePopup (popupUser);
   getProfileToUser ();
 });
 
 cardAddButton.addEventListener('click', function() {
-  openPopup (1);
+  togglePopup (popupCard);
 });
 
 popupCloseButtonUser.addEventListener('click', function () {
-  closePopup (0);
+  togglePopup (popupUser);
 });
 
 popupCloseButtonCard.addEventListener('click', function () {
-  closePopup (1);
+  togglePopup (popupCard);
 });
 
 popupCloseButtonLarge.addEventListener('click', function () {
-  closePopup (2);
+  togglePopup (popupLarge);
 });
 
 formPopupUser.addEventListener('submit', handleFormSubmitUser);

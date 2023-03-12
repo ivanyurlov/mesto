@@ -6,7 +6,6 @@ const nameInput = document.querySelector('#user-name');
 const jobInput = document.querySelector('#user-profession'); 
 const nameProfile = document.querySelector('.profile__user-name');
 const activityProfile = document.querySelector('.profile__activity');
-const popups = document.querySelectorAll('.popup');
 
 const cardTemplate = document.querySelector('#elementTemplate').content
 const cardAddButton = document.querySelector('.profile__add-button');
@@ -59,8 +58,8 @@ function deleteCard(event) {
   card.remove();
 };
 
-function togglePopup (popups) {
-  popups.classList.toggle('popup_opened');
+function togglePopup (popup) {
+  popup.classList.toggle('popup_opened');
 };
 
 function getProfileToUser () {

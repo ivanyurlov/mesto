@@ -13,13 +13,14 @@
 * добавления карточек вручную;
 * функция "лайк" карточки;
 * функция удаления карточки;
-* функция просмотра увеличенного изображения карточки.
+* функция просмотра увеличенного изображения карточки,
+* "живая" валидация нескольких форм.
 ### *Версия языка:* 
 * HTML5
 * JavaScript
 ## Чеклист Проектной работы:
-[Чеклист](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-5.pdf)
+* [Чеклист](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-6.pdf)
 ## Ссылка на проект:
-[Ссылка на проект](https://ivanyurlov.github.io/mesto/)
+* [Ссылка на проект](https://ivanyurlov.github.io/mesto/)
 ## Ссылка на макет:
-* [Ссылка на макет в Figma](https://www.figma.com/file/bjyvbKKJN2naO0ucURl2Z0/JavaScript.-Sprint-5?node-id=50160%3A172&t=QJCShmiyVfjicNs9-0)
+* [Ссылка на макет в Figma](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=1124-73&t=XzETpyMQ3B856NCI-0)

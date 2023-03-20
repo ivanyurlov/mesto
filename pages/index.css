@@ -39,3 +39,7 @@
 @import url(../blocks/element/__heart/_active/element__heart_active.css);
 @import url(../blocks/popup/_opened/popup_opened.css);
 @import url(../blocks/popup/__container/_large/popup__container_large.css);
+@import url(../blocks/popup/__input-name/_type_error/poppup__input-name_type_error.css);
+@import url(../blocks/popup/__input-name/_underline_error/popup__input-name_underline_error.css);
+@import url(../blocks/popup/__input-name/_visible/popup__input-name_visible.css);
+@import url(../blocks/popup/__save-button/_disabled/popup__save-button_disabled.css);

@@ -3,7 +3,6 @@ const showInputError = (inputError, input, validationMessage, config) => {
   inputError.classList.add(config.activeErrorClass);
   inputError.classList.remove(config.errorClass);
   input.classList.add(config.underlineErrorClass);
-  console.log(input);
 };
 
 const hideInputError = (inputError, input, config) => {
@@ -24,7 +23,7 @@ const activeButton = (submitButton, config ) => {
 };
 
 const checkInputValidity = (input, config) => {
-  const inputError = document.querySelector(`${config.inputErrorTemplate}${input.id}`);
+  const inputError = document.querySelector(`.${input.id}-error`);
   if(!input.validity.valid) {
     showInputError(inputError, input, input.validationMessage, config);
   } else {
@@ -67,14 +66,4 @@ const enableValidation = (config) => {
   setEventListeners(formList, config);
 };
 
-enableValidation({
-  formSelector: '.popup__form',
-  inputSelector: '.popup__input',
-  submitButtonSelector: '.popup__save-button',
-  inactiveButtonClass: 'popup__save-button_disabled', 
-  inputErrorTemplate: '.popup__input-error_',
-  activeErrorClass: 'popup__input-error',
-  underlineErrorClass: 'popup__input_underline-error',
-  errorClass: 'popup__input-error_visible'
-}); 
-
+enableValidation(validationConfig);

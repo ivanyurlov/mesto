@@ -3,7 +3,7 @@ const validationConfig = {
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'popup__save-button_disabled', 
-  activeErrorClass: 'popup__input-error_visible',
-  errorClass: 'popup__input-error_hidden',
+  activeErrorClass: 'popup__input-error_type_visible',
+  errorClass: 'popup__input-error_type_hidden',
   underlineErrorClass: 'popup__input_underline-error'
 }; 

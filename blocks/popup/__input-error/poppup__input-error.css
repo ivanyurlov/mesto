@@ -1,8 +1,9 @@
-.popup__input-name_type_error {
-  min-height: 29.04px;
+.popup__input-error {
+  display: block;
+  min-height: 30px;
   font-weight: 400;
   font-size: 12px;
-  line-height: 14.52px;
+  line-height: 14px;
   color: #FF0000;
   margin: 3px 0 0;
   padding: 0;

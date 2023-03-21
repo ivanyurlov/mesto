@@ -69,12 +69,12 @@ const enableValidation = (config) => {
 
 enableValidation({
   formSelector: '.popup__form',
-  inputSelector: '.popup__input-name',
+  inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save-button',
   inactiveButtonClass: 'popup__save-button_disabled', 
-  inputErrorTemplate: '.popup__input-name_type_error_',
-  activeErrorClass: 'popup__input-name_type_error',
-  underlineErrorClass: 'popup__input-name_underline_error',
-  errorClass: 'popup__input-name_visible'
+  inputErrorTemplate: '.popup__input-error_',
+  activeErrorClass: 'popup__input-error',
+  underlineErrorClass: 'popup__input_underline-error',
+  errorClass: 'popup__input-error_visible'
 }); 
 

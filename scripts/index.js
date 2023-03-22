@@ -15,10 +15,10 @@ const formPopupCard = document.querySelector('.popup__form_card');
 const titleInput = document.querySelector('#input-title');
 const urlInput = document.querySelector('#input-url');
 
-const popupLarge = document.querySelector('.popup_large');
-const popupPhoto = document.querySelector('.popup__photo');
-const popupCaption = document.querySelector('.popup__caption');
-const popupCloseButtonLarge = document.querySelector('.popup__close-button_large');
+const popupLargeImage = document.querySelector('.popup_large');
+const photoPopupLargeImg = document.querySelector('.popup__photo');
+const captionPopupLargeImg = document.querySelector('.popup__caption');
+const popupCloseButtonLargeImg = document.querySelector('.popup__close-button_large');
 
 const cardsContainer = document.querySelector('.elements');
 
@@ -38,10 +38,10 @@ function creatCard(card) {
   const photoLargeButton = newCard.querySelector('.element__large');
   photoLargeButton.addEventListener('click', () => handleLargePhoto(card));
   function handleLargePhoto (card) {
-    popupCaption.textContent = card.name;
-    popupPhoto.setAttribute('src', card.link);
-    popupPhoto.setAttribute('alt', 'Фото - ' + card.name);
-    openPopup (popupLarge);
+    captionPopupLargeImg.textContent = card.name;
+    photoPopupLargeImg.setAttribute('src', card.link);
+    photoPopupLargeImg.setAttribute('alt', 'Фото - ' + card.name);
+    openPopup (popupLargeImage);
   };
 
   return newCard;
@@ -58,22 +58,21 @@ function deleteCard(event) {
   card.remove();
 };
 
+function handlePressEscape (event) {
+  if(event.code === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopup (popupOpened);
+  } 
+};
+
 function openPopup (popup) {
   popup.classList.add('popup_opened');
-  document.addEventListener('keydown', (event) => {
-    if(event.code === 'Escape') {
-      closePopup (popup);
-    } 
-  });
+  document.addEventListener('keydown', handlePressEscape);
 };
 
 function closePopup (popup) {
   popup.classList.remove('popup_opened');
-  document.removeEventListener('keydown', (event) => {
-    if(event.code === 'Escape') {
-      closePopup (popup);
-    } 
-  });
+  document.removeEventListener('keydown', handlePressEscape);
 };
 
 function getProfileToUser () {
@@ -126,8 +125,8 @@ popupCloseButtonCard.addEventListener('click', function () {
   closePopup (popupCard);
 });
 
-popupCloseButtonLarge.addEventListener('click', function () {
-  closePopup (popupLarge);
+popupCloseButtonLargeImg.addEventListener('click', function () {
+  closePopup (popupLargeImage);
 });
 
 formPopupUser.addEventListener('submit', handleFormSubmitUser);
@@ -148,8 +147,8 @@ popupCard.addEventListener('click', (event) => {
   };
 });
 
-popupLarge.addEventListener('click', (event) => {
-  if(event.target === popupLarge) {
-    closePopup (popupLarge);
+popupLargeImage.addEventListener('click', (event) => {
+  if(event.target === popupLargeImage) {
+    closePopup (popupLargeImage);
   };
 });

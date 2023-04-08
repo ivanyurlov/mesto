@@ -1,3 +1,9 @@
+import {initialCards} from './cards.js';
+import {Card} from './Card.js';
+import {FormValidator} from './FormValidator.js';
+import {validationConfig} from './constants.js'
+
+
 const profileEditButton = document.querySelector('.profile__edit-button');
 const popupUser = document.querySelector('.popup_user');
 const popupCloseButtonUser = document.querySelector('.popup__close-button');
@@ -7,7 +13,7 @@ const jobInput = document.querySelector('#user-profession');
 const nameProfile = document.querySelector('.profile__user-name');
 const activityProfile = document.querySelector('.profile__activity');
 
-const cardTemplate = document.querySelector('#elementTemplate').content
+const cardTemplate = document.querySelector('#elementTemplate').content;
 const cardAddButton = document.querySelector('.profile__add-button');
 const popupCard = document.querySelector('.popup_card');
 const popupCloseButtonCard = document.querySelector('.popup__close-button_card');
@@ -20,42 +26,28 @@ const photoPopupLargeImg = document.querySelector('.popup__photo');
 const captionPopupLargeImg = document.querySelector('.popup__caption');
 const popupCloseButtonLargeImg = document.querySelector('.popup__close-button_large');
 
-const cardsContainer = document.querySelector('.elements');
+const userFormValidator = new FormValidator(validationConfig, formPopupUser);
+const cardFormValidator = new FormValidator(validationConfig, formPopupCard);
 
-function creatCard(card) {
-  const newCard = cardTemplate.cloneNode(true)
-  const cardTitle = newCard.querySelector('.element__title');
-  cardTitle.textContent = card.name;
-  const cardImage = newCard.querySelector('.element__photo');
-  cardImage.setAttribute('src', card.link);
-  cardImage.setAttribute('alt', 'Фото - ' + card.name);
-  const buttonForDelete = newCard.querySelector('.element__basket');
-  buttonForDelete.addEventListener('click', deleteCard);
+userFormValidator.enableValidation();
+cardFormValidator.enableValidation();
 
-  const buttonForLikeCard = newCard.querySelector('.element__heart');
-  buttonForLikeCard.addEventListener('click', handleLikeCard);
+initialCards.forEach((item) => {
+  renderCard (item);
+});
+
+function handleLargePhoto () {
+  captionPopupLargeImg.textContent = this._name;
+  photoPopupLargeImg.setAttribute('src', this._link);
+  photoPopupLargeImg.setAttribute('alt', 'Фото - ' + this._name);
+  openPopup (popupLargeImage);
+};
   
-  const photoLargeButton = newCard.querySelector('.element__large');
-  photoLargeButton.addEventListener('click', () => handleLargePhoto(card));
-  function handleLargePhoto (card) {
-    captionPopupLargeImg.textContent = card.name;
-    photoPopupLargeImg.setAttribute('src', card.link);
-    photoPopupLargeImg.setAttribute('alt', 'Фото - ' + card.name);
-    openPopup (popupLargeImage);
-  };
-
-  return newCard;
-};
-
-function renderCard (card) {
-  const cardReady = creatCard(card);
-  cardsContainer.prepend(cardReady);
-};
-
-function deleteCard(event) {
-  const button = event.target;
-  const card = button.closest('.element');
-  card.remove();
+function renderCard (item) {
+  const card = new Card(item, '#elementTemplate', handleLargePhoto);
+  const cardElement = card.generateCard();
+  const cardsContainer = document.querySelector('.elements'); 
+  cardsContainer.prepend(cardElement);
 };
 
 function handlePressEscape (event) {
@@ -93,18 +85,13 @@ function handleFormSubmitCard (event) {
   
   const name = titleInput.value;
   const link = urlInput.value;
-  console.log(link);
   const card = {
     name: name,
     link: link
   };
   renderCard (card);
+  
   closePopup (popupCard);
-};
-
-function handleLikeCard (event) {
-  const buttonForLikeCard = event.target;
-  buttonForLikeCard.classList.toggle('element__heart_active');
 };
 
 profileEditButton.addEventListener('click', function() {
@@ -132,8 +119,6 @@ popupCloseButtonLargeImg.addEventListener('click', function () {
 formPopupUser.addEventListener('submit', handleFormSubmitUser);
 
 formPopupCard.addEventListener('submit', handleFormSubmitCard);
-
-initialCards.forEach(renderCard);
 
 popupUser.addEventListener('click', (event) => {
   if(event.target === popupUser) {

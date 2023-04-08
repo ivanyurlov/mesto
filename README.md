@@ -14,12 +14,13 @@
 * функция "лайк" карточки;
 * функция удаления карточки;
 * функция просмотра увеличенного изображения карточки,
-* "живая" валидация нескольких форм.
+* "живая" валидация нескольких форм,
+* создание классов на основе ООП.
 ### *Версия языка:* 
 * HTML5
 * JavaScript
 ## Чеклист Проектной работы:
-* [Чеклист](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-6.pdf)
+* [Чеклист](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-7.pdf)
 ## Ссылка на проект:
 * [Ссылка на проект](https://ivanyurlov.github.io/mesto/)
 ## Ссылка на макет:

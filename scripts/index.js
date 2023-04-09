@@ -13,6 +13,7 @@ const jobInput = document.querySelector('#user-profession');
 const nameProfile = document.querySelector('.profile__user-name');
 const activityProfile = document.querySelector('.profile__activity');
 
+const cardsContainer = document.querySelector('.elements');
 const cardTemplate = document.querySelector('#elementTemplate').content;
 const cardAddButton = document.querySelector('.profile__add-button');
 const popupCard = document.querySelector('.popup_card');
@@ -42,12 +43,16 @@ function handleLargePhoto () {
   photoPopupLargeImg.setAttribute('alt', 'Фото - ' + this._name);
   openPopup (popupLargeImage);
 };
-  
-function renderCard (item) {
+
+function createCard(item) {
   const card = new Card(item, '#elementTemplate', handleLargePhoto);
   const cardElement = card.generateCard();
-  const cardsContainer = document.querySelector('.elements'); 
-  cardsContainer.prepend(cardElement);
+  return cardElement;
+}
+
+function renderCard (cardElement) {
+  const cardReady = createCard(cardElement);
+  cardsContainer.prepend(cardReady);
 };
 
 function handlePressEscape (event) {

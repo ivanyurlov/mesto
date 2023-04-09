@@ -15,8 +15,7 @@ export class Card {
   }
 
   _deleteCard() {
-    const card = this._element.querySelector('.element__basket').closest('.element');
-    card.remove();
+    this._card.closest('.element').remove();
   };
 
   _handleLikeCard () {
@@ -35,8 +34,14 @@ export class Card {
     return this._element;
   }
   _setEventListeners() {
-    this._element.querySelector('.element__basket').addEventListener('click', () => this._deleteCard(this._data));
-    this._element.querySelector('.element__heart').addEventListener('click', () => this._handleLikeCard(this._data));
-    this._element.querySelector('.element__large').addEventListener('click', () => this._handleLargePhoto(this._data));
+    const card = this._element.querySelector('.element__basket');
+    this._card = card;
+    const buttonForLikeCard = this._element.querySelector('.element__heart');
+    this.buttonForLikeCard = buttonForLikeCard;
+    const photoLargeButton = this._element.querySelector('.element__large');
+    this._photoLargeButton = photoLargeButton;
+    this._card.addEventListener('click', () => this._deleteCard(this._data));
+    this.buttonForLikeCard.addEventListener('click', () => this._handleLikeCard(this._data));
+    this._photoLargeButton.addEventListener('click', () => this._handleLargePhoto(this._data));
   }
 };

@@ -19,7 +19,7 @@ export class Card {
   };
 
   _handleLikeCard () {
-    this._element.querySelector('.element__heart').classList.toggle('element__heart_active');
+    this._buttonForLikeCard.classList.toggle('element__heart_active');
   };
 
   generateCard() {
@@ -37,11 +37,11 @@ export class Card {
     const card = this._element.querySelector('.element__basket');
     this._card = card;
     const buttonForLikeCard = this._element.querySelector('.element__heart');
-    this.buttonForLikeCard = buttonForLikeCard;
+    this._buttonForLikeCard = buttonForLikeCard;
     const photoLargeButton = this._element.querySelector('.element__large');
     this._photoLargeButton = photoLargeButton;
     this._card.addEventListener('click', () => this._deleteCard(this._data));
-    this.buttonForLikeCard.addEventListener('click', () => this._handleLikeCard(this._data));
+    this._buttonForLikeCard.addEventListener('click', () => this._handleLikeCard(this._data));
     this._photoLargeButton.addEventListener('click', () => this._handleLargePhoto(this._data));
   }
 };

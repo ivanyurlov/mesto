@@ -1,9 +1,9 @@
 export class Card {
-  constructor (data, cardTemplate, handleLargePhoto) {
+  constructor ({data, handleCardClik}, cardTemplate) {
     this._name = data.name;
     this._link = data.link;
     this._cardTemplate = cardTemplate;
-    this._handleLargePhoto = handleLargePhoto;
+    this._handleCardClik = handleCardClik;
   }
   _getTemplate() {
     const cardElement = document
@@ -16,11 +16,11 @@ export class Card {
 
   _deleteCard() {
     this._card.closest('.element').remove();
-  };
+  }
 
-  _handleLikeCard () {
+  _handleLikeCard() {
     this._buttonForLikeCard.classList.toggle('element__heart_active');
-  };
+  }
 
   generateCard() {
     this._element = this._getTemplate();
@@ -40,8 +40,8 @@ export class Card {
     this._buttonForLikeCard = buttonForLikeCard;
     const photoLargeButton = this._element.querySelector('.element__large');
     this._photoLargeButton = photoLargeButton;
-    this._card.addEventListener('click', () => this._deleteCard(this._data));
-    this._buttonForLikeCard.addEventListener('click', () => this._handleLikeCard(this._data));
-    this._photoLargeButton.addEventListener('click', () => this._handleLargePhoto(this._data));
+    this._card.addEventListener('click', () => this._deleteCard());
+    this._buttonForLikeCard.addEventListener('click', () => this._handleLikeCard());
+    this._photoLargeButton.addEventListener('click', () => this._handleCardClik(this._data));
   }
 };

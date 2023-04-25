@@ -2,7 +2,6 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <link rel="stylesheet" href="./pages/index.css">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Портфолио Иван Юрлов на Яндекс Практикуме">
   <meta name="keywords" content="html, css, javascript">
@@ -11,18 +10,18 @@
 </head>
 <body class="root">
   <header class="header">
-    <img class="header__logo" alt="Логотип" src="./images/logo.svg">
+    <img class="header__logo" alt="Логотип" src="<%=require('./images/logo.svg')%>">
   </header>
   <main class="content">
     <section class="profile">
       <div class="profile__info">
-        <img class="profile__avatar" alt="Фото на аватаре" src="./images/image-avatar.jpg">
+        <img class="profile__avatar" alt="Фото на аватаре" src="<%=require('./images/image-avatar.jpg')%>">
         <div class="profile__form">
           <div class="profile__text">
             <h1 class="profile__user-name">Жак-Ив Кусто</h1>
             <p class="profile__activity">Исследователь океана</p>
           </div>
-          <button class="profile__edit-button" type="button" aria-label="Иконка - ручка"></button>               
+          <button class="profile__edit-button" type="button" aria-label="Иконка - ручка"></button>
         </div>
       </div>
       <button class="profile__add-button" type="button" aria-label="Иконка - плюс"></button>
@@ -34,8 +33,8 @@
             <img class="element__photo">
           </div>
           <button class="element__basket" type="button">
-            <img class="element__basket-cap" alt="Иконка - крышка корзины" src="./images/Basket-cap-Icon.png">
-            <img class="element__basket-bottom" alt="Иконка - низ корзины" src="./images/Basket-bottom-Icon.png">
+            <img class="element__basket-cap" alt="Иконка - крышка корзины" src="<%=require('./images/Basket-cap-Icon.png')%>">
+            <img class="element__basket-bottom" alt="Иконка - низ корзины" src="<%=require('./images/Basket-bottom-Icon.png')%>">
           </button>
           <div class="element__like">
             <h2 class="element__title"></h2>
@@ -50,12 +49,12 @@
   </footer>
   <div class="popup popup_user">
     <div class="popup__container">
-      <button class="popup__close-button"></button>
+      <button class="popup__close-button popup__close-button_user"></button>
       <h2 class="popup__title">Редактировать профиль</h2>
       <form class="popup__form popup__form_user" name="userform" novalidate>
-        <input class="popup__input" id="user-name" autocomplete="off" type="text" name="name" placeholder="Имя" minlength="2" maxlength="40" required>
+        <input class="popup__input" id="user-name" autocomplete="off" type="text" name="userName" placeholder="Имя" minlength="2" maxlength="40" required>
         <span class="popup__input-error popup__input-error_type_hidden user-name-error"></span>
-        <input class="popup__input" id="user-profession" autocomplete="off" name="profession" type="text" placeholder="Профессия" minlength="2" maxlength="200" required>
+        <input class="popup__input" id="user-profession" autocomplete="off" name="userProfession" type="text" placeholder="Профессия" minlength="2" maxlength="200" required>
         <span class="popup__input-error popup__input-error_type_hidden user-profession-error"></span>
         <button class="popup__save-button" type="submit">Сохранить</button>
       </form>
@@ -66,9 +65,9 @@
       <button class="popup__close-button popup__close-button_card"></button>
       <h2 class="popup__title">Новое место</h2>
       <form class="popup__form popup__form_card" name="cardform" novalidate>
-        <input class="popup__input" id="input-title" autocomplete="off" type="text" name="input-title" placeholder="Название" minlength="2" maxlength="30" required>
+        <input class="popup__input" id="input-title" autocomplete="off" type="text" name="name" placeholder="Название" minlength="2" maxlength="30" required>
         <span class="popup__input-error popup__input-error_type_hidden input-title-error"></span>
-        <input class="popup__input" id="input-url" autocomplete="off" type="url" name="input-url" placeholder="Ссылка на картинку" required>
+        <input class="popup__input" id="input-url" autocomplete="off" type="url" name="link" placeholder="Ссылка на картинку" required>
         <span class="popup__input-error popup__input-error_type_hidden input-url-error"></span>
         <button class="popup__save-button" type="submit">Создать</button>
       </form>
@@ -81,10 +80,5 @@
       <figcaption class="popup__caption"></figcaption>
     </figure>
   </div>
-  <script type="module" src="./scripts/cards.js"></script>
-  <script type="module" src="./scripts/constants.js"></script>
-  <script type="module" src="./scripts/Card.js"></script>
-  <script type="module" src="./scripts/FormValidator.js"></script>
-  <script type="module" src="./scripts/index.js"></script>
 </body>
 </html>

@@ -4,8 +4,7 @@ export class Popup {
     this._popupElement = popupElement;
     const popupCloseButton = this._popupElement.querySelector('.popup__close-button');
     this._popupCloseButton = popupCloseButton;
-    const popupOpened = this._popupElement.querySelector('.popup_opened');
-    this._popupOpened = popupOpened;
+    this._handleEscClose = this._handleEscClose.bind(this);
   }
   _handleEscClose = (event) => {
     if(event.code === 'Escape') { 
@@ -14,15 +13,11 @@ export class Popup {
   }
   open() {
     this._popupElement.classList.add('popup_opened');
-    document.addEventListener('keydown', (event) => {
-      this._handleEscClose(event);
-    });
+    document.addEventListener('keydown', this._handleEscClose);
   }
   close() {
     this._popupElement.classList.remove('popup_opened');
-    document.removeEventListener('keydown', (event) => {
-      this._handleEscClose(event);
-    });
+    document.removeEventListener('keydown', this._handleEscClose);
   }
   setEventListeners() {
     this._popupElement.addEventListener('click', (event) => {

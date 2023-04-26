@@ -10,11 +10,9 @@ export class PopupWithImage extends Popup {
   }
   open(data) {
     super.open();
-    this._name = data.name;
-    this._link = data.link;
-    this._photoPopupLargeImg.src = this._link;
-    this._captionPopupLargeImg.textContent = this._name;
-    this._photoPopupLargeImg.setAttribute('src', this._link);
-    this._photoPopupLargeImg.setAttribute('alt', 'Фото - ' + this._name);
+    this._photoPopupLargeImg.src = data.link;
+    this._captionPopupLargeImg.textContent = data.name;
+    this._photoPopupLargeImg.setAttribute('src', data.link);
+    this._photoPopupLargeImg.setAttribute('alt', 'Фото - ' + data.name);
   }
 };

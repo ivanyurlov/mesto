@@ -1,13 +1,12 @@
-import './styles/index.css';
-import {initialCards} from './cards.js';
-import {Card} from './components/Card.js';
-import {Section} from './components/Section.js';
-import {Popup} from './components/Popup.js';
-import {PopupWithImage} from './components/PopupWithImage.js';
-import {PopupWithForm} from './components/PopupWithForm.js';
-import {UserInfo} from './components/UserInfo.js';
-import {FormValidator} from './components/FormValidator.js';
-import {validationConfig} from './constants.js'
+import './index.css';
+import {initialCards} from '../utils/cards.js';
+import {Card} from '../components/Card.js';
+import {Section} from '../components/Section.js';
+import {PopupWithImage} from '../components/PopupWithImage.js';
+import {PopupWithForm} from '../components/PopupWithForm.js';
+import {UserInfo} from '../components/UserInfo.js';
+import {FormValidator} from '../components/FormValidator.js';
+import {validationConfig} from '../utils/constants.js'
 
 
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -44,8 +43,6 @@ const cardsList = new Section({
   }
 }, '.elements');
 
-const popup = new Popup('.popup');
-
 const popupImage = new PopupWithImage('.popup_large');
 
 const popupFormUser = new PopupWithForm({
@@ -68,7 +65,6 @@ const popupFormCard = new PopupWithForm({
 userFormValidator.enableValidation();
 cardFormValidator.enableValidation();
 cardsList.renderItems();
-popup.setEventListeners();
 popupImage.setEventListeners();
 popupFormCard.setEventListeners();
 

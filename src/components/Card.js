@@ -1,9 +1,15 @@
 export class Card {
-  constructor ({data, handleCardClik}, cardTemplate) {
+  constructor ({data, handleCardClik, handleLikeClick, handleDeleteClick}, cardTemplate, userId) {
     this._name = data.name;
     this._link = data.link;
+    this._likes = data.likes;
+    this.cardId = data._id;
+    this._ownerId = data.owner._id;
+    this._userId = userId;
     this._cardTemplate = cardTemplate;
     this._handleCardClik = handleCardClik;
+    this._handleLikeClick = handleLikeClick;
+    this._handleDeleteClick = handleDeleteClick;
   }
   _getTemplate() {
     const cardElement = document
@@ -14,12 +20,31 @@ export class Card {
     return cardElement;
   }
 
-  _deleteCard() {
-    this._card.closest('.element').remove();
+  isLiked() {
+    return this._likes.some((data) => data._id === this._userId);
   }
 
-  _handleLikeCard() {
-    this._buttonForLikeCard.classList.toggle('element__heart_active');
+  _likeCard() {
+    this.isLiked();
+  }
+
+  countLikes(data) {
+    this._likes = data.likes;
+    this._cardLikesCounter.textContent = this._likes.length;
+  }
+
+  addLike() {
+    this._buttonForLikeCard.classList.add('element__heart_active');
+  }
+
+  removeLike() {
+    this._buttonForLikeCard.classList.remove('element__heart_active');
+  }
+
+  deleteCard(data) {
+    this._element.remove(data.cardId);
+    this._element = null;
+    
   }
 
   generateCard() {
@@ -31,17 +56,22 @@ export class Card {
     const cardTitle = this._element.querySelector('.element__title');
     cardTitle.textContent = this._name;
     this._setEventListeners();
+    this._cardLikesCounter.textContent = this._likes.length;
+    this._likeCard();
+    if (this._ownerId !== this._userId) {
+      this._buttonForDeleteCard.remove();
+    }
     return this._element;
   }
+ 
   _setEventListeners() {
-    const card = this._element.querySelector('.element__basket');
-    this._card = card;
-    const buttonForLikeCard = this._element.querySelector('.element__heart');
-    this._buttonForLikeCard = buttonForLikeCard;
-    const photoLargeButton = this._element.querySelector('.element__large');
-    this._photoLargeButton = photoLargeButton;
-    this._card.addEventListener('click', () => this._deleteCard());
-    this._buttonForLikeCard.addEventListener('click', () => this._handleLikeCard());
-    this._photoLargeButton.addEventListener('click', () => this._handleCardClik(this._data));
+    this._buttonForDeleteCard = this._element.querySelector('.element__basket');
+    this._buttonForLikeCard = this._element.querySelector('.element__heart');
+    this._photoLargeButton = this._element.querySelector('.element__large');
+    this._cardLikesCounter = this._element.querySelector('.element__counter');
+
+    this._buttonForDeleteCard.addEventListener('click', () => this._handleDeleteClick(this));
+    this._buttonForLikeCard.addEventListener('click', () => this._handleLikeClick(this));
+    this._photoLargeButton.addEventListener('click', () => this._handleCardClik(this._name, this._link));
   }
 };

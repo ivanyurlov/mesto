@@ -1,4 +1,5 @@
-.popup__save-button {
+.popup__spinner {
+  display: none;
   min-width: 109px;
   border: none;
   font-style: normal;
@@ -11,17 +12,17 @@
   border-radius: 2px;
   margin: 18px 0 0;
   padding: 14px 125px 18px;
-  cursor: pointer;
-  transition: opacity 0.3s linear;
+  /*cursor: pointer;
+  transition: opacity 0.3s linear;*/
   
 }
 
-.popup__save-button:hover {
+/*.popup__save-button:hover {
   opacity: 0.8;
-}
+}*/
 
 @media (max-width: 450px) {
-  .popup__save-button {
+  .popup__spinner {
     padding: 14px 82px;
     margin: 15px 0 0;
     font-style: normal;

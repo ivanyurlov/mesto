@@ -16,13 +16,15 @@
 * функция просмотра увеличенного изображения карточки,
 * "живая" валидация нескольких форм,
 * создание классов на основе ООП,
-* сборка проекта с помощью Webpack.
+* сборка проекта с помощью Webpack,
+* загрузка информации о пользователе и карточек с сервера,
+* функции редактирования информации о пользователе, добавления и удаления новой карточки, постановки и снятия лайка, счетчика лайков - реализованы посредством обмена данных с сервером. 
 ### *Версия языка:* 
 * HTML5
 * JavaScript
 ## Чеклист Проектной работы:
-* [Чеклист](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-8.pdf)
+* [Чеклист](https://code.s3.yandex.net/web-developer/checklists-pdf/new-program/checklist-9.pdf)
 ## Ссылка на проект:
 * [Ссылка на проект](https://ivanyurlov.github.io/mesto/)
 ## Ссылка на макет:
-* [Ссылка на макет в Figma](https://www.figma.com/file/kRVLKwYG3d1HGLvh7JFWRT/JavaScript.-Sprint-6?node-id=1124-73&t=XzETpyMQ3B856NCI-0)
+* [Ссылка на макет в Figma](https://www.figma.com/file/PSdQFRHoxXJFs2FH8IXViF/JavaScript.-Sprint-9?type=design&node-id=109-489&t=7hai99is7jiVzvVi-0)

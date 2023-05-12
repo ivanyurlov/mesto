@@ -8,7 +8,7 @@ import {PopupWithForm} from '../components/PopupWithForm.js';
 import {UserInfo} from '../components/UserInfo.js';
 import {FormValidator} from '../components/FormValidator.js';
 import {validationConfig} from '../utils/constants.js'
-
+import {renderLoadingUser, renderLoadingCard, renderLoadingAvatar} from '../utils/renderLoading.js'
 
 const avatarEditButton = document.querySelector('.profile__avatar');
 const profileEditButton = document.querySelector('.profile__edit-button');
@@ -19,31 +19,10 @@ const jobInput = document.querySelector('#user-profession');
 const avatarInput = document.querySelector('#user-avatar');
 const cardAddButton = document.querySelector('.profile__add-button');
 const formPopupCard = document.querySelector('.popup__form_card');
-const spinners = document.querySelectorAll('.popup__spinner');
-const submitButtons = document.querySelectorAll('.popup__save-button');
-
 
 const userFormValidator = new FormValidator(validationConfig, formPopupUser);
 const cardFormValidator = new FormValidator(validationConfig, formPopupCard);
 const avatarFormValidator = new FormValidator(validationConfig, formPopupAvatar);
-
-function renderLoading(isLoading) {
-  if (isLoading) {
-    spinners.forEach(item => {
-      item.classList.add('popup__spinner_visible');
-    })
-    submitButtons.forEach(item => {
-      item.classList.add('popup__save-button_hidden');
-    })
-  } else {
-    spinners.forEach(item => {
-      item.classList.remove('popup__spinner_visible');
-    })
-    submitButtons.forEach(item => {
-      item.classList.remove('popup__save-button_hidden');
-    })
-  }
-};
 
 function handleLikeClick(card) {
   if (card.isLiked()) {
@@ -114,16 +93,17 @@ const popupImage = new PopupWithImage('.popup_large');
 const popupFormAvatar = new PopupWithForm({
   popupSelector: '.popup_avatar', 
   handleFormSubmit: (inputValues) => {
-    renderLoading(true);
+    renderLoadingAvatar(true);
     api.editAvatar(inputValues['avatar'])  
       .then((res) => {
         userInfo.setUserInfo(res);
+        popupFormAvatar.close();
       })
       .catch((error) => {
         console.error(`Ошибка при редактировании аватара: ${error}`);
       })
       .finally(() => {
-        renderLoading(false);
+        renderLoadingAvatar(false);
       }); 
   }
 });
@@ -131,16 +111,17 @@ const popupFormAvatar = new PopupWithForm({
 const popupFormUser = new PopupWithForm({
   popupSelector: '.popup_user', 
   handleFormSubmit: (inputValues) => {
-    renderLoading(true);
+    renderLoadingUser(true);
     api.editProfile(inputValues['userName'], inputValues['userProfession'])  
       .then((res) => {
         userInfo.setUserInfo(res);
+        popupFormUser.close();
       })
       .catch((error) => {
         console.error(`Ошибка при редактировании профиля: ${error}`);
       })
       .finally(() => {
-        renderLoading(false);
+        renderLoadingUser(false);
       });  
   }
 });
@@ -148,17 +129,18 @@ const popupFormUser = new PopupWithForm({
 const popupFormCard = new PopupWithForm({
   popupSelector: '.popup_card', 
   handleFormSubmit: (inputValues) => {
-    renderLoading(true);
+    renderLoadingCard(true);
     api.addNewCard(inputValues['name'], inputValues['link'])
       .then((res) => {
         const cardReady = createCard(res);
         cardsList.addItem(cardReady);
+        popupFormCard.close();
       })
       .catch((error) => {
         console.error(`Ошибка при добавлении новой карточки: ${error}`);
       })
       .finally(() => {
-        renderLoading(false);
+        renderLoadingCard(false);
       });
   }
 }); 
@@ -173,8 +155,7 @@ popupFormAvatar.setEventListeners();
 popupFormUser.setEventListeners();
 
 avatarEditButton.addEventListener('click', () => {
-  const currentUserInfo = userInfo.getUserInfo();
-  avatarInput.value = currentUserInfo.avatar;
+  avatarInput.value = '';
   popupFormAvatar.open();
 });
 
@@ -200,19 +181,12 @@ const api = new Api({
 
 let userId;
 
-api.getUserInfo()
-  .then((res) => {
-    userInfo.setUserInfo(res);
-    userId = res._id;
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cardData]) => {
+    userInfo.setUserInfo(userData);
+    userId = userData._id;
+    cardsList.renderItems(cardData);
   })
   .catch((error) => {
-    console.error(`Ошибка при загрузке профиля: ${error}`);
-  });
-
-api.getInitialCards()
-  .then((res) => {
-    cardsList.renderItems(res);
-  })
-  .catch((error) => {
-    console.error(`Ошибка при загрузке карточек: ${error}`);
+    console.error(`Ошибка при загрузке профиля и карточек: ${error}`);
   });

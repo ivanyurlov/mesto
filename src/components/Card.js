@@ -44,7 +44,6 @@ export class Card {
   deleteCard(data) {
     this._element.remove(data.cardId);
     this._element = null;
-    
   }
 
   generateCard() {
@@ -58,6 +57,10 @@ export class Card {
     this._setEventListeners();
     this._cardLikesCounter.textContent = this._likes.length;
     this._likeCard();
+    const userLikedCard = this._likes.find((data) => data._id === this._userId);
+    if (userLikedCard) {
+      this.addLike();
+    }
     if (this._ownerId !== this._userId) {
       this._buttonForDeleteCard.remove();
     }
